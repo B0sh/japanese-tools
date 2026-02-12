@@ -162,6 +162,9 @@ for potential_image_folders in [ '~/Downloads', '~/Desktop' ]:
 
     for image in [f for f in potential_images if (datetime.now() - datetime.fromtimestamp(os.path.getctime(os.path.join(potential_image_dir, f)))) <= timedelta(minutes=3)]:
         recent_images.append(f'{potential_image_dir}/{image}')
+    
+
+
 
 if not recent_images:
     if mac:
@@ -170,9 +173,9 @@ if not recent_images:
         print("Taking screenshot: ", card_image)
         
         # Broken Macos 15 :( 
-        # os.system(f'screencapture -tjpg -i "{card_image}"')
-        notify('Anki Screenshot', 'Screenshots broken in MacOS 15')
-        exit()
+        os.system(f'screencapture -tjpg -i "{card_image}"')
+        # notify('Anki Screenshot', 'Screenshots broken in MacOS 15')
+        # exit()
     else:
         print(" Take Screenshot ")
 
@@ -207,8 +210,6 @@ else:
         anki_file = f'{collection_path}/{card_image}'
 
         os.rename(original_image, anki_file)
-
-
 
 
 
