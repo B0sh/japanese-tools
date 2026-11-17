@@ -1,3 +1,16 @@
 ctrl - a : ~/Code/japanese-tools/.venv/bin/python /Users/b0sh/Code/japanese-tools/anki-screenshot.py
-ctrl - r : ~/Code/japanese-tools/.venv/bin/python /Users/b0sh/Code/japanese-tools/ocr.py
-ctrl - g : shortcuts run "Audio to Anki (auto stop)"
+ctrl - r : ~/Code/japanese-tools/jp-ocr.swift >> /tmp/jp-ocr.log 2>&1
+ctrl - g : ~/Code/japanese-tools/anki-audio.swift >> /tmp/anki-audio.log 2>&1
+
+# ctrl - g [
+#     "anki" ~
+#     * : https://github.com/koekeishiya/skhd/issues/1
+# ] 
+
+# Microsoft sculpt ergonomic remap for function key
+# 0x6E : skhd -k "0xB3"
+
+.blacklist [
+    "terminal"
+    "ghostty"
+]

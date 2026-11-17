@@ -238,42 +238,42 @@ if card_image and os.path.exists(f'{collection_path}/{card_image}'):
         }
     }
 
-    if mac:
-        # Optional code that look at the current open tab only in chrome and updates the 
-        # AnkiCard url and document title for my personal records. The purpose is
-        # sometimes I look up words that I hear in videos and can't use yomichan to 
-        # get the data. (this is super fun)
-        activeTab = asrun('''
-            tell application "Google Chrome"
-                if 0 < (count of windows) then
-                    tell front window
-                        { title } of active tab
-                    end tell
-                else
-                    "No windows open in Chrome"
-                end if
-            end tell
-        ''')
+    # if mac:
+    #     # Optional code that look at the current open tab only in chrome and updates the 
+    #     # AnkiCard url and document title for my personal records. The purpose is
+    #     # sometimes I look up words that I hear in videos and can't use yomichan to 
+    #     # get the data. (this is super fun)
+    #     activeTab = asrun('''
+    #         tell application "Google Chrome"
+    #             if 0 < (count of windows) then
+    #                 tell front window
+    #                     { title } of active tab
+    #                 end tell
+    #             else
+    #                 "No windows open in Chrome"
+    #             end if
+    #         end tell
+    #     ''')
 
-        activeURL = asrun('''
-            tell application "Google Chrome"
-                if 0 < (count of windows) then
-                    tell front window
-                        { URL } of active tab
-                    end tell
-                else
-                    "No windows open in Chrome"
-                end if
-            end tell
-        ''')
-        print("Tab Title: ", activeTab)
-        print("Tab URL: ", activeURL)
+    #     activeURL = asrun('''
+    #         tell application "Google Chrome"
+    #             if 0 < (count of windows) then
+    #                 tell front window
+    #                     { URL } of active tab
+    #                 end tell
+    #             else
+    #                 "No windows open in Chrome"
+    #             end if
+    #         end tell
+    #     ''')
+    #     print("Tab Title: ", activeTab)
+    #     print("Tab URL: ", activeURL)
         
-        if activeTab != "No windows open in Chrome" and (
-            "youtube.com" in activeURL or "twitch.tv" in activeURL
-        ):
-            updateDto['params']['note']['fields']['URL'] = f'<a href="{activeURL}">{activeURL}</a>'
-            updateDto['params']['note']['fields']['DocumentTitle'] = activeTab
+    #     if activeTab != "No windows open in Chrome" and (
+    #         "youtube.com" in activeURL or "twitch.tv" in activeURL
+    #     ):
+    #         updateDto['params']['note']['fields']['URL'] = f'<a href="{activeURL}">{activeURL}</a>'
+    #         updateDto['params']['note']['fields']['DocumentTitle'] = activeTab
 
 
     response = requests.post(server, json = updateDto)
